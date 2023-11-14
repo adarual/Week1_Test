@@ -118,3 +118,40 @@ ON o.CustomerID = c.CustomerID
 GROUP BY c.CompanyName
 ORDER BY NumOrders
 
+
+
+--JOINING A TABLE TO ITSELF EXAMPLE:
+SELECT
+ppl.FirstName, ppl.LastName, ppl.Title,
+(mgrs.FirstName + '' + mgrs.LastName) AS managername
+FROM Employees AS ppl
+LEFT JOIN Employees AS mgrs
+ON ppl.ReportsTo = mgrs.EmployeeID
+
+
+
+
+--EX 3
+--task 1
+SELECT CompanyName, ContactName, Phone
+FROM Customers
+
+--task 2
+SELECT CompanyName, ContactName, Phone
+FROM Suppliers
+
+--task 3
+SELECT FirstName + ' ' + LastName, Extension
+FROM Employees
+
+--task 4
+SELECT CompanyName, ContactName, Phone
+FROM Customers
+UNION ALL
+SELECT CompanyName, ContactName, Phone
+FROM Suppliers
+UNION ALL
+SELECT 'Northwind Traders',
+FirstName + ' ' + LastName, Extension
+FROM Employees
+
