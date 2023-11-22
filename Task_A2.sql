@@ -70,13 +70,34 @@ MIN (date) AS earliest,
 MAX (date) AS latest
 FROM Seattle_weather_conditions
 
---15) 
+--15) Calculate the difference in temperature on each day between the maximum (F) and minimum (F), 
+--then sort your results to dicover on which date(s) this difference was largest.
+SELECT DIFFERENCE (Max_Temperature_F, - Min_Temperature_F) AS DiffTemperature, 
+FROM Seattle_weather_conditions
+ORDER BY DiffTemperature DESC
 
-SELECT *
+--16) Summarise the average humidity per month (all years).
+SELECT AVG 
 FROM Seattle_weather_conditions
 
-SELECT *
-FROM Seattle_cycles_trip
+--17) Which month(s) in 2015 saw the highest max windspeed (not gusts) recorded?
+SELECT Max_Wind_Speed_MPH, 
+YEAR = 2015
+FROM Seattle_weather_conditions
 
+--18) On how many days were any weather events other than simply rain (storm, snow, fog, etc.) recorded?
+SELECT Events
+FROM Seattle_weather_conditions
+WHERE Events IS NOT NULL 
+AND (Events <> Rain)
+
+--19) What was the total rainfall accumulation (inches) during the first 3 months of 2016?
+SELECT 
+YEAR = 2016
+FROM Seattle_weather_conditions
+
+--20) On how many individual dates was fog reported? 
 SELECT *
-FROM Seattle_cycles_station
+FROM Seattle_weather_conditions
+WHERE Events IS fog
+
